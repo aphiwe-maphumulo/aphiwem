@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -614,7 +615,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* What We Do Section - 4 Cards */
+        /* What We Do Section - Updated with new cards and dropdown */
         .what-we-do {
             padding: 10rem 0;
             background: var(--secondary);
@@ -712,14 +713,90 @@
             color: transparent;
         }
 
-        .art-card p {
+        .card-preview {
             color: var(--text-secondary);
             line-height: 1.8;
             font-weight: 300;
             font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
         }
 
-        /* REMOVED: card-tags section - quick words removed as requested */
+        .card-content {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 0;
+        }
+
+        .card-content.show {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1.5rem;
+        }
+
+        .card-content p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card-content li {
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card-content li i {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        .plus-btn {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+            z-index: 10;
+        }
+
+        .plus-btn:hover {
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .plus-btn i {
+            transition: transform 0.4s ease;
+        }
+
+        .plus-btn.active i {
+            transform: rotate(45deg);
+        }
 
         /* SERIOUS WHITE AMBER GALLERY SECTION */
         .serious-gallery {
@@ -1959,7 +2036,7 @@
         </div>
     </section>
 
-    <!-- What We Do Section - 4 Cards -->
+    <!-- What We Do Section - Updated with new cards and dropdown -->
     <section id="what-we-do" class="what-we-do">
         <div class="what-we-do-bg"></div>
         <div class="container">
@@ -1969,32 +2046,92 @@
             </div>
             
             <div class="cards-grid">
-                <div class="art-card scale-reveal">
-                    <i class="fas fa-palette card-icon"></i>
-                    <h3>Visual Design</h3>
-                    <p>Crafting stunning visual identities and design systems that communicate brand essence and engage audiences through compelling aesthetics.</p>
-                    <!-- REMOVED: card-tags -->
+                <!-- Traditional Art Card -->
+                <div class="art-card scale-reveal" id="card1">
+                    <i class="fas fa-paint-brush card-icon"></i>
+                    <h3>Traditional Art</h3>
+                    <div class="card-preview">
+                        Classic artistic techniques reimagined for the digital age
+                    </div>
+                    <div class="card-content" id="content1">
+                        <p>Our traditional art services blend time-honored techniques with modern applications:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Pencil & Charcoal Sketching</li>
+                            <li><i class="fas fa-check-circle"></i> Ink & Watercolor Illustration</li>
+                            <li><i class="fas fa-check-circle"></i> Oil & Acrylic Painting</li>
+                            <li><i class="fas fa-check-circle"></i> Mixed Media Artwork</li>
+                            <li><i class="fas fa-check-circle"></i> Traditional Animation Cells</li>
+                        </ul>
+                    </div>
+                    <div class="plus-btn" onclick="toggleCard('content1', this)">
+                        <i class="fas fa-plus"></i>
+                    </div>
                 </div>
                 
-                <div class="art-card scale-reveal">
+                <!-- Animation Card -->
+                <div class="art-card scale-reveal" id="card2">
                     <i class="fas fa-film card-icon"></i>
-                    <h3>Motion Graphics</h3>
-                    <p>Creating dynamic animations and motion graphics that bring stories to life through fluid movement and captivating visual narratives.</p>
-                    <!-- REMOVED: card-tags -->
+                    <h3>Animation</h3>
+                    <div class="card-preview">
+                        Bringing stories to life through movement and emotion
+                    </div>
+                    <div class="card-content" id="content2">
+                        <p>Comprehensive animation services for every platform:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 2D Character Animation</li>
+                            <li><i class="fas fa-check-circle"></i> 3D CGI Animation</li>
+                            <li><i class="fas fa-check-circle"></i> Stop Motion Animation</li>
+                            <li><i class="fas fa-check-circle"></i> Motion Graphics</li>
+                            <li><i class="fas fa-check-circle"></i> Character Rigging & Lip Sync</li>
+                        </ul>
+                    </div>
+                    <div class="plus-btn" onclick="toggleCard('content2', this)">
+                        <i class="fas fa-plus"></i>
+                    </div>
                 </div>
                 
-                <div class="art-card scale-reveal">
-                    <i class="fas fa-gamepad card-icon"></i>
-                    <h3>Game Art</h3>
-                    <p>Designing immersive game environments, characters, and assets that create memorable gaming experiences and drive player engagement.</p>
-                    <!-- REMOVED: card-tags -->
-                </div>
-                
-                <div class="art-card scale-reveal">
+                <!-- 3D Art Card -->
+                <div class="art-card scale-reveal" id="card3">
                     <i class="fas fa-cube card-icon"></i>
-                    <h3>3D Modeling</h3>
-                    <p>Crafting detailed 3D models and environments for games, animations, and visualizations with precision and artistic vision.</p>
-                    <!-- REMOVED: card-tags -->
+                    <h3>3D Art</h3>
+                    <div class="card-preview">
+                        Immersive three-dimensional worlds and characters
+                    </div>
+                    <div class="card-content" id="content3">
+                        <p>Cutting-edge 3D artistry for games and media:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 3D Modeling & Sculpting</li>
+                            <li><i class="fas fa-check-circle"></i> Texturing & Shading</li>
+                            <li><i class="fas fa-check-circle"></i> Lighting & Rendering</li>
+                            <li><i class="fas fa-check-circle"></i> Environment Design</li>
+                            <li><i class="fas fa-check-circle"></i> Product Visualization</li>
+                        </ul>
+                    </div>
+                    <div class="plus-btn" onclick="toggleCard('content3', this)">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Digital Art Card -->
+                <div class="art-card scale-reveal" id="card4">
+                    <i class="fas fa-laptop card-icon"></i>
+                    <h3>Digital Art</h3>
+                    <div class="card-preview">
+                        Contemporary digital创作 for modern audiences
+                    </div>
+                    <div class="card-content" id="content4">
+                        <p>Versatile digital art solutions for any project:</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Digital Painting & Illustration</li>
+                            <li><i class="fas fa-check-circle"></i> Concept Art & Character Design</li>
+                            <li><i class="fas fa-check-circle"></i> Matte Painting</li>
+                            <li><i class="fas fa-check-circle"></i> Photo Manipulation</li>
+                            <li><i class="fas fa-check-circle"></i> UI/UX Visual Design</li>
+                        </ul>
+                    </div>
+                    <div class="plus-btn" onclick="toggleCard('content4', this)">
+                        <i class="fas fa-plus"></i>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2350,8 +2487,6 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-
-                
                 <div class="footer-links">
                     <h4>Navigation</h4>
                     <ul>
@@ -2383,6 +2518,23 @@
     </footer>
 
     <script>
+        // Toggle Card Dropdown Function
+        function toggleCard(contentId, btn) {
+            const content = document.getElementById(contentId);
+            content.classList.toggle('show');
+            btn.classList.toggle('active');
+            
+            // Change plus to minus when open
+            const icon = btn.querySelector('i');
+            if (content.classList.contains('show')) {
+                icon.classList.remove('fa-plus');
+                icon.classList.add('fa-minus');
+            } else {
+                icon.classList.remove('fa-minus');
+                icon.classList.add('fa-plus');
+            }
+        }
+
         // Mobile Navigation Toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
@@ -2486,8 +2638,6 @@
                 });
             });
         }
-
-        // REMOVED: Animated number counter function
 
         // Reveal animations on scroll
         function initAnimations() {
@@ -2687,8 +2837,6 @@
             // Handle image errors
             handleImageErrors();
             
-            // REMOVED: Animate numbers function call
-            
             // Initialize animations
             initAnimations();
             
@@ -2721,5 +2869,3 @@
     </script>
 </body>
 </html>
-
-
